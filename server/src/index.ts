@@ -33,6 +33,8 @@ app.post('/api/analyze', async (req, res) => {
     res.send(analysis);
 });
 
+app.post('/api/chat', openClawProxy);
+
 io.on('connection', (socket) => {
     console.log('Client connected:', socket.id);
 

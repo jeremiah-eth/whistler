@@ -34,16 +34,16 @@ export function AIChat() {
         setIsLoading(true);
 
         try {
-            const response = await fetch('http://localhost:3001/api/analyze', {
+            const response = await fetch('http://localhost:3001/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ticker: input })
+                body: JSON.stringify({ message: input })
             });
             const data = await response.json();
 
             const aiMessage: Message = {
                 role: 'assistant',
-                content: data.advice
+                content: data.response
             };
             setMessages(prev => [...prev, aiMessage]);
         } catch (error) {
