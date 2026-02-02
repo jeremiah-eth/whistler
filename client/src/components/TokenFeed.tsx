@@ -9,7 +9,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { Token } from "@/lib/mock-data";
-import { ArrowUpRight, ArrowDownRight, ExternalLink, Info } from "lucide-react";
+import { ArrowUpRight, ArrowDownRight, ExternalLink, Info, BrainCircuit } from "lucide-react";
 
 export function TokenFeed({
     onAction,
@@ -79,7 +79,10 @@ export function TokenFeed({
                             </TableCell>
                             <TableCell className="text-right">
                                 <div className="flex justify-end gap-2">
-                                    <Button variant="ghost" size="icon" onClick={() => onAction(token, 'info')} className="h-8 w-8 text-gray-400 hover:text-accent hover:bg-accent/10">
+                                    <Button variant="ghost" size="icon" onClick={() => onAction(token, 'analyze')} className="h-8 w-8 text-gray-400 hover:text-accent hover:bg-accent/10">
+                                        <BrainCircuit className="w-4 h-4" />
+                                    </Button>
+                                    <Button variant="ghost" size="icon" onClick={() => onAction(token, 'info')} className="h-8 w-8 text-gray-400 hover:text-blue-400 hover:bg-blue-400/10">
                                         <Info className="w-4 h-4" />
                                     </Button>
                                     <Button size="sm" onClick={() => onAction(token, 'long')} className="bg-green-500/10 text-green-500 border border-green-500/20 hover:bg-green-500 hover:text-black h-8 px-3 transition-all">

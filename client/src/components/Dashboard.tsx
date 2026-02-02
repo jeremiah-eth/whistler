@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Search, Filter, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { TradingModal } from './TradingModal';
+import { AnalysisModal } from './AnalysisModal';
 import type { Token } from '@/lib/mock-data';
 import { io } from 'socket.io-client';
 import { toast } from 'sonner';
@@ -15,6 +16,7 @@ export function Dashboard() {
     const [selectedToken, setSelectedToken] = useState<Token | null>(null);
     const [tradeType, setTradeType] = useState<'long' | 'short' | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isAnalysisOpen, setIsAnalysisOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -52,9 +54,14 @@ export function Dashboard() {
         };
     }, []);
 
-    const handleAction = (token: Token, type: 'long' | 'short' | 'info') => {
+    const handleAction = (token: Token, type: 'long' | 'short' | 'info' | 'analyze') => {
         if (type === 'info') {
             window.open(`https://dexscreener.com/base/${token.id}`, '_blank');
+            return;
+        }
+        if (type === 'analyze') {
+            setSelectedToken(token);
+            setIsAnalysisOpen(true);
             return;
         }
         setSelectedToken(token);
@@ -107,6 +114,12 @@ export function Dashboard() {
                     type={tradeType}
                     isOpen={isModalOpen}
                     onClose={() => setIsModalOpen(false)}
+                />
+
+                <AnalysisModal
+                    token={selectedToken}
+                    isOpen={isAnalysisOpen}
+                    onClose={() => setIsAnalysisOpen(false)}
                 />
             </div>
         </section>
