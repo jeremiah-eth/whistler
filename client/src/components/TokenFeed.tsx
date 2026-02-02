@@ -15,7 +15,7 @@ export function TokenFeed({
     onAction,
     tokens
 }: {
-    onAction: (token: Token, type: 'long' | 'short' | 'info') => void,
+    onAction: (token: Token, type: 'long' | 'short' | 'info' | 'analyze') => void,
     tokens: Token[]
 }) {
     return (
